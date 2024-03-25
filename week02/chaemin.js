@@ -1,4 +1,5 @@
-alert("Welcome to Chaemin info page!");
+// alert("Welcome to Chaemin info page!");
+prompt("방문자명을 입력하시오","이름");
 const mainbox = document.getElementById("mainbox");
 function darkmode() {
   mainbox.style.backgroundColor = '#262626';
