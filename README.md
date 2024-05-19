@@ -2,6 +2,7 @@
 ---
 ### MTV 사건
 2009년 MTV VMA에서 칸예(View)가 테일러(Client)에게 "비욘세가 상을 타야했다"고 전한(응답을 반환) 사건이다
+
 <img width="300" alt="Screenshot 2024-05-19 at 11 21 20 AM" src="https://github.com/Likelion-at-SMWU-12th/YuChaeMin/assets/113892409/8d9a7093-3afa-4b55-9413-6d10e0e3cc0f">
 
 ### MTV 패턴
