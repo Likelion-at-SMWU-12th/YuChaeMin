@@ -8,6 +8,6 @@ from .models import Todolist
 def url_view(request):
   context = { 
     'todo' :  Todolist.objects.all()
-}
+  }
   # return render(request, 'fbview.html')
   return render(request, 'fbview.html', context)
