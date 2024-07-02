@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 
 # Create your views here.
@@ -12,6 +12,7 @@ from django.http import HttpResponse, JsonResponse
 
 from django.views.generic import ListView
 from .models import Post
+
 
 class class_view(ListView):
   model = Post
