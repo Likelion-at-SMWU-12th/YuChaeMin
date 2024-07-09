@@ -1,7 +1,20 @@
 from django.shortcuts import render, redirect
-from .forms import SignUpForm
+from .forms import SignUpForm, UserBasedForm, UserCreateForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
+
+from rest_framework.viewsets import ModelViewSet
+
+from django.views.generic import ListView
+from .models import User
+from .serializers import UserModelSerializer
+
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
+@api_view(['GET'])
+def signup(request):
+    
 
 def signup_view(request):
     # GET 요청 시 HTML 응답
