@@ -1,32 +1,5 @@
-from typing import Any
-from django.db import models
-from django.contrib.auth.models import AbstractUser, UserManager as DjangoUserManger
-# Create your models here.
-
-class UserManager(DjangoUserManger):
-    def _create_user(self, username, email, password, **extra_fields):
-        if not email: #이메일 유효성 검사
-            raise ValueError("이메일은 필수 값입니다")
-        user = self.model(username=username, email=email, **extra_fields)
-        user.set_password(password)
-        user.save(using=self.db)
-        return user
-
-    def create_user(self, username, email=None, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', False)
-        extra_fields.setdefault('is_superuser', False)
-        return self._create_user(username, email, password, **extra_fields)
-    
-    def create_superuser(self, username, email=None, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        return super().create_superuser(username, email, password, **extra_fields)
-
-# 기본 유저 (abstractuser는 장고에서 제공하는 기본 유저)
-class User(AbstractUser):
-    phone = models.CharField(verbose_name='전화번호', max_length=11) #얘가 새로 생겼다!
-    objects = UserManager()
-
-class UserInfo(models.Model):
-    phone_sub = models.CharField(verbose_name='보조 전화번호', max_length= 11)
-    user = models.ForeignKey(to='User', on_delete=models.CASCADE)
+# Django의 기본 User 모델을 사용할거라서 모델을 따로 만들지 않았습니다!
+# Django 기본 user 모델 필드 중 아래 필드들을 다음과 같이 사용할 것:
+#   username: ID로 활용, required=True
+#   email: required=True
+#   password: required=True
