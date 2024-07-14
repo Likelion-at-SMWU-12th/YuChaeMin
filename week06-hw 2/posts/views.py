@@ -5,10 +5,93 @@ from rest_framework.viewsets import ModelViewSet
 from django.views.generic import ListView
 from .models import Post
 from .forms import PostBasedForm, PostModelForm, PostDetailForm, PostCreateForm, PostUpdateForm
-from .serializers import PostModelSerializer
+from .serializers import PostModelSerializer, PostListSerializer, PostRetrieveSerializer, CommentListModelSerializer
 
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action, permission_classes
+from rest_framework import generics
+
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
+
+
+# ViewSet
+class PostModelViewSet(ModelViewSet):
+    queryset=Post.objects.all()
+    serializer_class=PostListSerializer
+    
+    @action(detail=True, methods=['GET'])
+    def get_comment_all(self, request, pk=None):
+        post=self.get_object()
+        comment_all = post.comment_set.all()
+        serializer = CommentListModelSerializer(comment_all, many = True)
+        return Response(serializer.data)
+    
+    def get_permissions(self):
+        action = self.action
+        permission_classes = []
+        if action == 'list' :
+            permission_classes = [AllowAny]
+        elif action == 'create':
+            permission_classes = [IsAuthenticated]
+        elif action == 'retrieve':
+            permission_classes = [IsAuthenticated]
+        elif action == 'update':
+            permission_classes = [IsAdminUser]
+        elif action == 'partial_update':
+            permission_classes = [IsAdminUser]
+        elif action == 'destroy':
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]
+
+# 게시글 목록 + 생성
+class PostListCreateView(generics.ListAPIView, generics.CreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostListSerializer
+
+# 게시글 상세-new!
+class PostRetrieveUpdateView(generics.RetrieveAPIView, generics.UpdateAPIView, generics.DestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostRetrieveSerializer
+
+# queryset의 리스트를 보여주는 뷰
+# 게시글 목록 + 생성
+class PostListView(generics.ListAPIView, generics.CreateAPIView):
+    queryset=Post.objects.all()
+    serializer_class = PostListSerializer# 쿼리셋과 시리얼라이저를 사용하겠다~
+
+# 게시글 상세
+class PostRetrieveView(generics.RetrieveAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostRetrieveSerializer
+
+class PostModelViewSet(ModelViewSet):
+    queryset=Post.objects.all()
+    serializer_class=PostListSerializer # 모델 뷰셋 사용하게 정의
+
+# 게시글 수정
+# UpdateAPIView- 아까 목록+생성과 동일하게.. 글을 보여줘야 수정할 수 있으니까!
+# class PostUpdateView(generics.UpdateAPIView):
+#     queryset = Post.objects.all()
+#     serializer_class = PostListSerializer
+
+# 사용자 인증 구현
+@api_view(['POST'])
+@permission_classes(AllowAny)
+def login_view(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request,
+                        username=username,
+                        password=password,)
+    if user:
+        token, _ = Token.objects.get_or_create(user=user)
+        return Response({'token':token.key})
+    else:
+        return Response(status=401)
+
+
 
 @api_view(['GET'])
 def calculator(request):
@@ -34,9 +117,6 @@ def calculator(request):
     }
     return Response(data)
 
-class PostModelViewSet(ModelViewSet):
-    queryset=Post.objects.all()
-    serializer_class=PostModelSerializer
 
 def index(request):
     return render(request, 'index.html')
