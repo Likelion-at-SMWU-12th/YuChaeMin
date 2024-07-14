@@ -103,6 +103,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# 프로젝트의 인증 방식으로 토큰 방식을 사용하겠다 정의
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
