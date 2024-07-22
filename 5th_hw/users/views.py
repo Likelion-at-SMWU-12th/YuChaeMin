@@ -22,5 +22,5 @@ class LoginView(generics.GenericAPIView):
         return Response({"token": token.key}, status=status.HTTP_200_OK)
 
 class ProfileView(generics.RetrieveUpdateAPIView):
-  queryset = Profile.objects.all()
-  serializer_class = ProfileSerializer
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
