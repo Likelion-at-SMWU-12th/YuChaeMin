@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #mainbox {
+      font-weight: bold;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      
+    }
+    h2{
+      background-color: chocolate;
+      border-radius: 10px;
+      color:azure;
+      text-align: center;
+    }
+    #list{
+      background-color: antiquewhite;
+    }
+    img{
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>🍪 my hobbies 🤍</h1>
+  <div id = "mainbox">
+    <section>
+      <div id = "hobbies">
+        <h2>베이킹</h2>
+        <img src="{% static '/image/cookie.jpg' %}" alt="cookie" width="500" >
+        <p>구울 수 있는 것:</p>
+        <div id="list">
+          <ul>
+            <li>시나몬 쿠키</li>
+            <li>초코칩 쿠키</li>
+            <li>얼그레이 쿠키</li>
+          </ul>
+        </div>
+        <h2>러닝</h2>
+        <img src="{% static '/image/run.jpeg' %}" alt="run" width="500">
+        <p>경력:</p>
+        <div id="list">
+          <ul>
+            <li>손기정 하프 마라톤 (2023.11)</li>
+            <li>청파러너 페이서 (2024.3~)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

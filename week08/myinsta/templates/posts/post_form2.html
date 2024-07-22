@@ -1,0 +1,19 @@
+<!--post_form.html을 form을 사용하도록 수정-->
+{% extends 'base.html' %} {% block title %}Form{% endblock %}
+<!-- -->
+{% block content%}
+<h1>Post 입력 화면 - Form 사용</h1>
+<form
+  action="{%url 'posts:post-new'%}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %}
+  <div>{{form.as_p}}</div> 
+  {% comment %} 이 폼을 넘겨 받아서 문단으로 넣으라는게 as_p; 이미지랑 컨텐트를 이 줄이 알아서 띄워준거 {% endcomment %}
+  <div>
+    <input type="submit" /> 
+    {% comment %} 런서버 돌릴경우 submit버튼이 생길거 {% endcomment %}
+  </div>
+</form>
+{% endblock %}
