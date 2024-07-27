@@ -42,4 +42,35 @@ public class PostRestController {
         logger.info("in read post");
         return this.postList.get(id);
     }
+
+    // !!여기서부터 과제!!
+
+    // PUT /post/0/
+    // PUT /post/?id=0/
+    @PutMapping("{id}")
+    public void updatePost(@RequestBody PostDto postDto, @PathVariable("id") int id){
+        logger.info("in update post with id: " + id);
+        if (id>=0 && id<this.postList.size()){
+            PostDto existingPost = this.postList.get(id);
+            existingPost.setTitle(postDto.getTitle());
+            existingPost.setContent(postDto.getContent());
+            existingPost.setWriter(postDto.getWriter());
+            logger.info("post updated: " + existingPost);
+        } else {
+            logger.error("post with id " + id + " not found");
+        }
+    }
+
+    // DELETE /post/0/
+    // DELETE /post/{id}/
+    @DeleteMapping("{id}")
+    public void deletePost(@PathVariable("id") int id) {
+        logger.info("in delete post with id: " + id);
+        if (id>=0 && id<this.postList.size()){
+            PostDto removedPost = this.postList.remove(id);
+            logger.info("post removed: "+ removedPost);
+        } else {
+            logger.error("post with id " + id + " not found");
+        }
+    }
 }
