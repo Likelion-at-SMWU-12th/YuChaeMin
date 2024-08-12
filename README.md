@@ -1,46 +1,46 @@
 ## Spring Annotation 개념 정리
 ### 컨트롤러 선언
 1. @RestController
-RESTful 웹 서비스의 컨트롤러를 나타내는 어노테이션
-@Controller와 @ResponseBody를 결합한 것
-이 어노테이션이 적용된 클래스의 모든 메서드는 HTTP 응답 본문으로 직접 반환값을 전송
+- RESTful 웹 서비스의 컨트롤러를 나타내는 어노테이션
+- @Controller와 @ResponseBody를 결합한 것
+- 이 어노테이션이 적용된 클래스의 모든 메서드는 HTTP 응답 본문으로 직접 반환값을 전송
 
 ### 요청 매핑
 #### 일반매핑
 2. @RequestMapping
-요청 URL을 특정 메서드나 클래스에 매핑하는 데 사용
-클래스 레벨과 메서드 레벨 모두에서 사용 가능
-URL 패턴, HTTP 메서드, 요청/응답의 미디어 타입 등을 지정할 수 있음
+- 요청 URL을 특정 메서드나 클래스에 매핑하는 데 사용
+- 클래스 레벨과 메서드 레벨 모두에서 사용 가능
+- URL 패턴, HTTP 메서드, 요청/응답의 미디어 타입 등을 지정할 수 있음
 #### HTTP 메서드별 특화 매핑
 3. @GetMapping
-HTTP GET 요청을 특정 핸들러 메서드에 매핑
-@RequestMapping(method = RequestMethod.GET)의 축약형
+- HTTP GET 요청을 특정 핸들러 메서드에 매핑
+- @RequestMapping(method = RequestMethod.GET)의 축약형
 
 4. @PostMapping
-HTTP POST 요청을 특정 핸들러 메서드에 매핑
-@RequestMapping(method = RequestMethod.POST)의 축약형
+- HTTP POST 요청을 특정 핸들러 메서드에 매핑
+- @RequestMapping(method = RequestMethod.POST)의 축약형
 
 5. @PutMapping
-HTTP PUT 요청을 특정 핸들러 메서드에 매핑
-@RequestMapping(method = RequestMethod.PUT)의 축약형
+- HTTP PUT 요청을 특정 핸들러 메서드에 매핑
+- @RequestMapping(method = RequestMethod.PUT)의 축약형
 
 6. @DeleteMapping
-HTTP DELETE 요청을 특정 핸들러 메서드에 매핑
-@RequestMapping(method = RequestMethod.DELETE)의 축약형
+- HTTP DELETE 요청을 특정 핸들러 메서드에 매핑
+- @RequestMapping(method = RequestMethod.DELETE)의 축약형
 
 ### 파라미터 바인딩
 7. @PathVariable
-URL 경로에 포함된 변수값을 메서드의 파라미터로 받을 때 사용
-예: /users/{id}에서 {id} 부분의 값을 추출
+- URL 경로에 포함된 변수값을 메서드의 파라미터로 받을 때 사용
+- 예: /users/{id}에서 {id} 부분의 값을 추출
 
 8. @RequestParam
-HTTP 요청 파라미터를 메서드의 파라미터로 바인딩
-주로 쿼리 스트링이나 폼 데이터의 값을 받을 때 사용
+- HTTP 요청 파라미터를 메서드의 파라미터로 바인딩
+- 주로 쿼리 스트링이나 폼 데이터의 값을 받을 때 사용
 
 ### 자바 관련
 9. @Override
-메서드가 상위 클래스나 인터페이스의 메서드를 오버라이드함을 명시적으로 선언
-컴파일러에게 오버라이드 규칙을 체크하도록 지시
+- 메서드가 상위 클래스나 인터페이스의 메서드를 오버라이드함을 명시적으로 선언
+- 컴파일러에게 오버라이드 규칙을 체크하도록 지시
 
 이 어노테이션들을 적절히 조합하여 사용하면 Spring Boot에서 RESTful API를 효과적으로 구현할 수 있습니다.
 
