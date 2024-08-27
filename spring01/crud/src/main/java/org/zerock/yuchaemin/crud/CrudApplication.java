@@ -1,4 +1,4 @@
-git spackage org.zerock.yuchaemin.crud;
+package org.zerock.yuchaemin.crud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
