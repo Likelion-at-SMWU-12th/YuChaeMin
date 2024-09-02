@@ -1,0 +1,6 @@
+<mapper namespace="org.zerock.yuchaemin.mapper.post.PostMapper">
+    <insert id="createPost" parameterType="PostEntity">
+        INSERT INTO post (title, content, writer, board_entity_id)
+        VALUES (#{title}, #{content}, #{writer}, #{boardEntity.id})
+    </insert>
+</mapper>
