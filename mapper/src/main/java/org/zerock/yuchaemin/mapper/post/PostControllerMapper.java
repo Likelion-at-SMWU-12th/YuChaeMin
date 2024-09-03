@@ -25,12 +25,20 @@ public class PostControllerMapper {
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public PostDto getPost(@PathVariable int id) {
         return this.postServiceMapping.getPost(id);
     }
 
     @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
     public List<PostDto> getAllPosts(){
         return this.postServiceMapping.getAllPosts();
+    }
+
+    @PutMapping("/{id}")
+    public void updatePost(@PathVariable int id, @RequestBody PostDto postDto) {
+        postDto.setId(id);
+        this.postServiceMapping.updatePost(postDto);
     }
 }

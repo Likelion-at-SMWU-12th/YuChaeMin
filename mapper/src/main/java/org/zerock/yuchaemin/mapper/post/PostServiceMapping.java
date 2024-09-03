@@ -48,5 +48,15 @@ public class PostServiceMapping {
                 .collect(Collectors.toList());
     }
 
+    public void updatePost(PostDto dto) {
+        PostEntity postEntity = new PostEntity();
+        postEntity.setId(dto.getId());
+        postEntity.setTitle(dto.getTitle());
+        postEntity.setContent(dto.getContent());
+        postEntity.setWriter(dto.getWriter());
+        postEntity.setBoardEntity(null);
+
+        this.postMapper.updatePost(postEntity);
+    }
 
 }
