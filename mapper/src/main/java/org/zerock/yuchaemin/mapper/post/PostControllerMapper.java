@@ -41,4 +41,10 @@ public class PostControllerMapper {
         postDto.setId(id);
         this.postServiceMapping.updatePost(postDto);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePost(@PathVariable int id) {
+        this.postServiceMapping.deletePost(id);
+    }
 }

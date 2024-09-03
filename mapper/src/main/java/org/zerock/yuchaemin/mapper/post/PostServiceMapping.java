@@ -59,4 +59,8 @@ public class PostServiceMapping {
         this.postMapper.updatePost(postEntity);
     }
 
+    public void deletePost(int id) {
+        this.postMapper.deletePost(id);
+    }
+
 }
