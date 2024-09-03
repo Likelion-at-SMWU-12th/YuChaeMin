@@ -21,4 +21,9 @@ public class PostControllerMapper {
     public void createPost(@RequestBody PostDto postDto) {
         this.postServiceMapping.createPost(postDto);
     }
+
+    @GetMapping("/{id}")
+    public PostDto getPost(@PathVariable int id) {
+        return this.postServiceMapping.getPost(id);
+    }
 }

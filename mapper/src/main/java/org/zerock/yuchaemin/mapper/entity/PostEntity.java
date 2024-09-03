@@ -14,7 +14,7 @@ import lombok.Getter;
 public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String title;
     private String content;
     private String writer;

@@ -12,9 +12,9 @@ public class PostDto {
     private String title;
     private String content;
     private String writer;
-    private int boardId;
+    private long boardId;
 
-    public PostDto(int id, String title, String content, String writer, int board){
+    public PostDto(int id, String title, String content, String writer, long board){
         this.id = id;
         this.title = title;
         this.content = content;
