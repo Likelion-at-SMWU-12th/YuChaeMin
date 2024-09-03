@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("Post")
 public class PostControllerMapper {
@@ -25,5 +27,10 @@ public class PostControllerMapper {
     @GetMapping("/{id}")
     public PostDto getPost(@PathVariable int id) {
         return this.postServiceMapping.getPost(id);
+    }
+
+    @GetMapping()
+    public List<PostDto> getAllPosts(){
+        return this.postServiceMapping.getAllPosts();
     }
 }

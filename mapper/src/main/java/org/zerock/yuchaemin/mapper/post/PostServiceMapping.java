@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.zerock.yuchaemin.mapper.entity.PostEntity;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostServiceMapping {
@@ -33,6 +34,18 @@ public class PostServiceMapping {
                 postEntity.getWriter(),
                 postEntity.getBoardEntity() != null ? postEntity.getBoardEntity().getId() : 0
         );
+    }
+    public List<PostDto> getAllPosts() {
+        List<PostEntity> postEntities = this.postMapper.getAllPosts();
+        return postEntities.stream()
+                .map(postEntity -> new PostDto(
+                        postEntity.getId(),
+                        postEntity.getTitle(),
+                        postEntity.getContent(),
+                        postEntity.getWriter(),
+                        postEntity.getBoardEntity() != null ? postEntity.getBoardEntity().getId() : 0
+                ))
+                .collect(Collectors.toList());
     }
 
 
