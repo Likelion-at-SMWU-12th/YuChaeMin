@@ -25,13 +25,13 @@ public class Board extends BaseEntity {
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<Post> postList = new ArrayList<>();
+    private List<Post> posts = new ArrayList<>();
 
-    public void addPost(Post post) { this.postList.add(post); }
+    public void addPost(Post post) { this.posts.add(post); }
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<BoardMembership> memberships = new ArrayList<>();
+    private List<BoardMembership> boardMemberships = new ArrayList<>();
 
 
 }

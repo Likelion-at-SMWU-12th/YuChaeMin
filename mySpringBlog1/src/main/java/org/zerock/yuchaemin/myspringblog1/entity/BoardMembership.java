@@ -29,8 +29,16 @@ public class BoardMembership extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private PermissionType permissionType;
 
+
     public enum PermissionType {
         READ, WRITE, MODERATE, ADMIN
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+        if (author != null && !author.getBoardMemberships().contains(this)) {
+            author.getBoardMemberships().add(this);
+        }
     }
 }
 

@@ -24,9 +24,7 @@ public class Author extends BaseEntity {
 
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<Post> postList = new ArrayList<>();
-
-    public void addPost(Post post) { this.postList.add(post); }
+    private List<Post> posts = new ArrayList<>();
 
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
@@ -35,4 +33,14 @@ public class Author extends BaseEntity {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private List<BoardMembership> boardMemberships = new ArrayList<>();
+
+    public void addPost(Post post) {
+        this.posts.add(post);
+        post.setAuthor(this);
+    }
+
+    public void removePost(Post post) {
+        this.posts.remove(post);
+        post.setAuthor(null);
+    }
 }

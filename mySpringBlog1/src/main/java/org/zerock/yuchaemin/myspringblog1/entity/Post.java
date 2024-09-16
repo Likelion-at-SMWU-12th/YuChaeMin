@@ -35,10 +35,31 @@ public class Post extends BaseEntity {
     @ToString.Exclude
     private Author author;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "post")
     @ToString.Exclude
     private List<Comment> commentList = new ArrayList<>();
 
-    public void addComment(Comment comment) { this.commentList.add(comment); }
+    public void addComment(Comment comment) {
+        this.commentList.add(comment);
+        comment.setPost(this);
+    }
+
+    public void removeComment(Comment comment) {
+        this.commentList.remove(comment);
+        comment.setPost(null);
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+        if (author != null && !author.getPosts().contains(this)) {
+            author.getPosts().add(this);
+        }
+    }
+    public void setBoard(Board board) {
+        this.board = board;
+        if (board != null && !board.getPosts().contains(this)) {
+            board.getPosts().add(this);
+        }
+    }
 
 }
