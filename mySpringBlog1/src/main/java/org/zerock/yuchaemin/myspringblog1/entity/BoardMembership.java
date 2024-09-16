@@ -4,29 +4,34 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "comment")
-public class Comment extends BaseEntity {
+@Table(name = "boardMembership")
+public class BoardMembership extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String content;
+    private String name;
 
     @ManyToOne
-    @JoinColumn(name = "post_id")
-    @ToString.Exclude
-    private Post post;
+    @JoinColumn(name = "board_id")
+    private Board board;
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    @ToString.Exclude
     private Author author;
 
+    @Enumerated(EnumType.STRING)
+    private PermissionType permissionType;
+
+    public enum PermissionType {
+        READ, WRITE, MODERATE, ADMIN
+    }
 }
+
+
