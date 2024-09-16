@@ -22,13 +22,17 @@ public class Author extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private List<Post> postList = new ArrayList<>();
 
     public void addPost(Post post) { this.postList.add(post); }
 
-    @OneToMany(mappedBy = "comment", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private List<Comment> commentList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private List<BoardMembership> boardMemberships = new ArrayList<>();
 }

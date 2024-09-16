@@ -35,7 +35,7 @@ public class Post extends BaseEntity {
     @ToString.Exclude
     private Author author;
 
-    @OneToMany(mappedBy = "comment", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<Comment> commentList = new ArrayList<>();
 

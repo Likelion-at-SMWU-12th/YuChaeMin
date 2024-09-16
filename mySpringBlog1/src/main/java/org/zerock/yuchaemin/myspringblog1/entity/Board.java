@@ -23,11 +23,15 @@ public class Board extends BaseEntity {
     @Column(unique = true, name = "board_name")
     private String name;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private List<Post> postList = new ArrayList<>();
 
     public void addPost(Post post) { this.postList.add(post); }
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private List<BoardMembership> memberships = new ArrayList<>();
 
 
 }
