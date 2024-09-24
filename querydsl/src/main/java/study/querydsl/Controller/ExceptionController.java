@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import study.querydsl.Exception.CustomException;
+import study.querydsl.Exception.CustomExceptionHandler;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static study.querydsl.Exception.HttpStatus.BAD_REQUEST;
 
 @RestController
 @RequestMapping("/exception")
@@ -21,8 +25,12 @@ public class ExceptionController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(ExceptionController.class);
 
+//    @GetMapping
+//    public void exception() {
+//        throw new RuntimeException("getRuntimeException 메서드 호출");
+//    }
     @GetMapping
-    public void exception() {
+    public void getRuntimeException(){
         throw new RuntimeException("getRuntimeException 메서드 호출");
     }
 
@@ -41,5 +49,10 @@ public class ExceptionController {
         map.put("message", e.getMessage());
 
         return new ResponseEntity<>(map, responseHeaders, httpStatus);
+    }
+
+    @GetMapping("/custom")
+    public void getCustomException() throws CustomException {
+        throw new CustomException(BAD_REQUEST, "getCustionException 메서드 호출");
     }
 }
