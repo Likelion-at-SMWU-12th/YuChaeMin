@@ -22,7 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/rest-template")
 public class RestTemplateController {
-    private static final Logger log = LoggerFactory.getLogger(WebClientController.class)
+    private static final Logger log = LoggerFactory.getLogger(WebClientController.class);
 
     private final RestTemplateService restTemplateService;
 
@@ -51,16 +51,16 @@ public class RestTemplateController {
         return restTemplateService.postWithHeader();
     }
 
-    @GetMapping("/tweets-blocking")
-    public List<Tweet> getTweetBlocking() {
-        log.info("Starting BLOCKING Controller!");
+    @GetMapping("tweets-blocking")
+    public List<Tweet> getTweetsBlocking() {
+        log.info("Starting BLOKING Controller!");
         final String uri = "http://localhost:9090/api/v1/slow";
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<Tweet>> response = restTemplate.exchange(
                 uri, HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<Tweet>>() {}
-        );
+                new ParameterizedTypeReference<List<Tweet>>() {});
+
         List<Tweet> result = response.getBody();
         result.forEach(tweet -> log.info(tweet.toString()));
         log.info("Exiting BLOCKING Controller!");

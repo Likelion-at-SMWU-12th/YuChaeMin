@@ -5,7 +5,15 @@ public class Tweet {
     private String content;
     private String author;
 
-    // Getters and Setters
+    public Tweet() {
+    }
+
+    public Tweet(String id, String content, String author) {
+        this.id = id;
+        this.content = content;
+        this.author = author;
+    }
+
     public String getId() {
         return id;
     }

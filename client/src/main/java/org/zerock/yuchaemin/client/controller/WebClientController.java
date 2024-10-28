@@ -37,17 +37,18 @@ public class WebClientController {
         return webClientService.postWithHeader();
     }
 
+
     @GetMapping(value = "/tweets-non-blocking", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Tweet> getTweetsNonBlocking() {
-        log.info("Starting NON-BLOCKING Controller!");
+        log.info("Starting NON-BLOCKING Controller");
         Flux<Tweet> tweetFlux = WebClient.create("http://localhost:9090")
                 .get()
-                .uri("/api/v1/slow")
+                .uri("api/v1/slow")
                 .retrieve()
                 .bodyToFlux(Tweet.class);
 
         tweetFlux.subscribe(tweet -> log.info(tweet.toString()));
-        log.info("Exiting NON-BLOCKING Controller!");
+        log.info("Exiting NON-BLOCKING Controller");
         return tweetFlux;
     }
 }
