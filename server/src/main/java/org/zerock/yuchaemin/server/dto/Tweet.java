@@ -1,13 +1,14 @@
-package org.zerock.yuchaemin.client.dto;
+package org.zerock.yuchaemin.server.dto;
 
 public class Tweet {
     private String id;
     private String content;
     private String author;
 
+    // 기본 생성자
     public Tweet() {
     }
-
+    // 모든 필드를 초기화하는 생성자
     public Tweet(String id, String content, String author) {
         this.id = id;
         this.content = content;
@@ -46,4 +47,5 @@ public class Tweet {
                 ", author='" + author + '\'' +
                 '}';
     }
+
 }
